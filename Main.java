@@ -151,7 +151,7 @@ class Main {
                 result = input.read(buffer, progress, size - progress);
 
             } catch (IOException e) {
-                System.err.println("Error: could not read bytes from stdin");
+                System.err.println("Error: could not read bytes from input");
                 System.exit(1);
                 return; // unreachable but required to compile
             }
