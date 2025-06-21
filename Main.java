@@ -31,13 +31,11 @@ class Main {
             for (int i = 0; i < file_count; i++) {
                 String file_name = file_names.get(i);
 
-                if (i > 0) {
+                if (i > 0)
                     System.out.println();
-                }
 
-                if (file_count > 1) {
+                if (file_count > 1)
                     System.out.println("==> " + file_name + " <==");
-                }
 
                 try {
                     FileInputStream file_in = new FileInputStream(file_name);
@@ -71,28 +69,24 @@ class Main {
         for (int i = 0; i < args.length; i++) {
             String arg = args[i];
 
-            if (arg.startsWith("-")) {
+            if (arg.startsWith("-")) { // flag arg
+                unit = arg.charAt(1);
+                if (unit != 'c' && unit != 'n') {
+                    System.err.printf("Error: invalid flag arg '%s'\n", arg);
+                    System.exit(1);
+                }
+
                 if (hasUnit) {
                     System.err.println("Error: multiple unit args");
                     System.exit(1);
                 }
-
                 hasUnit = true;
 
-                if (arg.charAt(1) == 'c')
-                    unit = 'c';
-                else if (arg.charAt(1) == 'n')
-                    unit = 'n';
-                else {
-                    System.err.printf("Error: invalid unit arg '%s'\n", arg);
-                    System.exit(1);
-                }
-
-                if (arg.length() == 2) {
+                if (arg.length() > 2) // if the arg includes size
+                    arg = arg.substring(2);
+                else { // if the arg is just the unit
                     i++;
                     arg = args[i];
-                } else {
-                    arg = arg.substring(2);
                 }
 
                 try {
@@ -102,7 +96,6 @@ class Main {
                         System.err.println("Error: multiple size args");
                         System.exit(1);
                     }
-
                     hasSize = true;
 
                     size = sizeArg;
@@ -113,7 +106,7 @@ class Main {
             } else {
                 File file = new File(arg);
                 if (!file.exists() || !file.isFile() || !file.canRead()) {
-                    System.err.printf("Error: file '%s' does not exist or is not readable\n", arg);
+                    System.err.printf("Error: invalid file arg '%s'\n", arg);
                     System.exit(1);
                 }
                 file_names.add(arg);
@@ -128,9 +121,8 @@ class Main {
             if (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
 
-                if (i == 0 && line.startsWith(UTF8_BOM)) {
+                if (i == 0 && line.startsWith(UTF8_BOM))
                     line = line.substring(1);
-                }
 
                 System.out.println(line);
             } else
@@ -149,9 +141,8 @@ class Main {
 
             try {
                 result = input.read(buffer, progress, size - progress);
-
             } catch (IOException e) {
-                System.err.println("Error: could not read bytes from stdin");
+                System.err.println("Error: could not read bytes from input stream");
                 System.exit(1);
                 return; // unreachable but required to compile
             }
@@ -164,9 +155,8 @@ class Main {
 
         String text = new String(buffer, java.nio.charset.StandardCharsets.UTF_8);
 
-        if (text.startsWith(UTF8_BOM)) {
+        if (text.startsWith(UTF8_BOM))
             text = text.substring(1);
-        }
 
         System.out.println(text);
     }
