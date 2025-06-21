@@ -1,0 +1,77 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Case 1",
+            "request": "launch",
+            "mainClass": "Main",
+            "args": [
+                "test.txt"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Case 2",
+            "request": "launch",
+            "mainClass": "Main"
+        },
+        {
+            "type": "java",
+            "name": "Case 3",
+            "request": "launch",
+            "mainClass": "Main",
+            "args": [
+                "-n1",
+                "test.txt"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Case 4",
+            "request": "launch",
+            "mainClass": "Main",
+            "args": [
+                "-n3",
+                "test2.txt"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Case 5",
+            "request": "launch",
+            "mainClass": "Main",
+            "args": [
+                "-c",
+                "31",
+                "test.txt"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Case 6",
+            "request": "launch",
+            "mainClass": "Main",
+            "args": [
+                "-c",
+                "30",
+                "test2.txt"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Case 7",
+            "request": "launch",
+            "mainClass": "Main",
+            "args": [
+                "-n",
+                "10",
+                "test2.txt",
+                "test.txt"
+            ]
+        }
+    ]
+}
